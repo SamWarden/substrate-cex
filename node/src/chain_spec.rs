@@ -1,7 +1,7 @@
-use sp_core::{Pair, Public, sr25519};
+use sp_core::{Pair, Public, sr25519, OpaquePeerId};
 use node_template_runtime::{
 	AccountId, AuraConfig, BalancesConfig, GenesisConfig, GrandpaConfig,
-	SudoConfig, SystemConfig, WASM_BINARY, Signature
+	SudoConfig, SystemConfig, WASM_BINARY, Signature, NodeAuthorizationConfig
 };
 use sp_consensus_aura::sr25519::AuthorityId as AuraId;
 use sp_finality_grandpa::AuthorityId as GrandpaId;
@@ -153,5 +153,13 @@ fn testnet_genesis(
 			// Assign network admin rights.
 			key: root_key,
 		},
+        pallet_node_authorization: NodeAuthorizationConfig {
+            nodes: vec![
+                (
+                    OpaquePeerId(bs58::decode("12D3KooWPru2NhR1xccoedM3TZ4xWMY1YoWbvr9EZJ35EFXqSLaC").into_vec().unwrap()),
+                    endowed_accounts[0].clone(),
+                ),
+            ],
+        },
 	}
 }
