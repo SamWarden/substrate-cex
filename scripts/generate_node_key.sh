@@ -1,0 +1,2 @@
+subkey generate-node-key
+
