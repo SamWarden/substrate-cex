@@ -3934,13 +3934,15 @@ dependencies = [
 [[package]]
 name = "pallet-balances"
 version = "3.0.0"
-source = "git+https://github.com/paritytech/substrate.git?tag=monthly-2021-05#70ef0afc86cdef0cba09336acffb08bff08540aa"
 dependencies = [
  "frame-benchmarking",
  "frame-support",
  "frame-system",
  "log",
+ "pallet-transaction-payment",
  "parity-scale-codec",
+ "sp-core",
+ "sp-io",
  "sp-runtime",
  "sp-std",
 ]
