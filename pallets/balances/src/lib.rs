@@ -284,8 +284,13 @@ pub mod pallet {
 		/// - DB Weight: 1 Read, 1 Write to `who`
 		/// # </weight>
 		#[pallet::weight(
-			T::WeightInfo::set_balance_creating() // Creates a new account.
-				.max(T::WeightInfo::set_balance_killing()) // Kills an existing account.
+			{
+				let weight_info = T::WeightInfo::set_balance_creating(); // Creates a new account.
+				(
+					weight_info.0.max(T::WeightInfo::set_balance_killing().0), // Kills an existing account.
+					weight_info.1,
+				)
+			}
 		)]
 		pub(super) fn set_balance(
 			origin: OriginFor<T>,
