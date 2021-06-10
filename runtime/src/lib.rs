@@ -227,10 +227,10 @@ impl pallet_grandpa::Config for Runtime {
 parameter_types! {
 	pub const MinimumPeriod: u64 = SLOT_DURATION / 2;
 
-    // The u128 constant value 500 is aliased to a type named ExistentialDeposit.
-    pub const ExistentialDeposit: u128 = 500;
-    // A heuristic that is used for weight estimation.
-    pub const MaxLocks: u32 = 50;
+	// The u128 constant value 500 is aliased to a type named ExistentialDeposit.
+	pub const ExistentialDeposit: u128 = 500;
+	// A heuristic that is used for weight estimation.
+	pub const MaxLocks: u32 = 50;
 }
 
 impl pallet_timestamp::Config for Runtime {
@@ -256,38 +256,38 @@ impl pallet_balances::Config for Runtime {
 parameter_types! {
 	pub const TransactionByteFee: Balance = 1;
 
-    // Choose a fee that incentivizes desireable behavior.
-    pub const NickReservationFee: u128 = 100;
-    pub const MinNickLength: usize = 8;
-    // Maximum bounds on storage are important to secure your chain.
-    pub const MaxNickLength: usize = 32;
+	// Choose a fee that incentivizes desireable behavior.
+	pub const NickReservationFee: u128 = 100;
+	pub const MinNickLength: usize = 8;
+	// Maximum bounds on storage are important to secure your chain.
+	pub const MaxNickLength: usize = 32;
 }
 
 
 impl pallet_nicks::Config for Runtime {
-    // The Balances pallet implements the ReservableCurrency trait.
-    // `Balances` is defined in `construct_runtimes!` macro. See below.
-    // https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/pallet_balances/index.html#implementations-2
-    type Currency = Balances;
+	// The Balances pallet implements the ReservableCurrency trait.
+	// `Balances` is defined in `construct_runtimes!` macro. See below.
+	// https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/pallet_balances/index.html#implementations-2
+	type Currency = Balances;
 
-    // Use the NickReservationFee from the parameter_types block.
-    type ReservationFee = NickReservationFee;
+	// Use the NickReservationFee from the parameter_types block.
+	type ReservationFee = NickReservationFee;
 
-    // No action is taken when deposits are forfeited.
-    type Slashed = ();
+	// No action is taken when deposits are forfeited.
+	type Slashed = ();
 
-    // Configure the FRAME System Root origin as the Nick pallet admin.
-    // https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/frame_system/enum.RawOrigin.html#variant.Root
-    type ForceOrigin = frame_system::EnsureRoot<AccountId>;
+	// Configure the FRAME System Root origin as the Nick pallet admin.
+	// https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/frame_system/enum.RawOrigin.html#variant.Root
+	type ForceOrigin = frame_system::EnsureRoot<AccountId>;
 
-    // Use the MinNickLength from the parameter_types block.
-    type MinLength = MinNickLength;
+	// Use the MinNickLength from the parameter_types block.
+	type MinLength = MinNickLength;
 
-    // Use the MaxNickLength from the parameter_types block.
-    type MaxLength = MaxNickLength;
+	// Use the MaxNickLength from the parameter_types block.
+	type MaxLength = MaxNickLength;
 
-    // The ubiquitous event type.
-    type Event = Event;
+	// The ubiquitous event type.
+	type Event = Event;
 }
 
 impl pallet_transaction_payment::Config for Runtime {
