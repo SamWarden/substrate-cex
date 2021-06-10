@@ -254,7 +254,7 @@ impl pallet_balances::Config for Runtime {
 }
 
 parameter_types! {
-	pub const TransactionByteFee: Balance = 1;
+	pub const TransactionByteFee: Balance = 0;
 
 	// Choose a fee that incentivizes desireable behavior.
 	pub const NickReservationFee: u128 = 100;
